@@ -1,8 +1,8 @@
 <?php  
 
-  var_dump($_SERVER);
+  // var_dump($_SERVER);
 
-  // $url = $_SERVER['HTTP_HOST'] . '/app';
-  // header("Location: " . $url);
-  // die();
+  $url = $_SERVER['HTTP_HOST'] . '/app';
+  header("Location: " . $url);
+  die();
 ?>
