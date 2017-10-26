@@ -10,7 +10,7 @@
 
 <?php
 
-  include_once('database.php');
+  require_once('database.php');
 
   if (isset($_GET['paletteName'])) {
     $safeName = htmlentities($_GET['paletteName']);
