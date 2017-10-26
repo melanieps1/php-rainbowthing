@@ -4,6 +4,7 @@
   <title>Rainbowthing</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <link rel="stylesheet" href="/app/style.css">
+  <script src="https://use.fontawesome.com/14f1f2c704.js"></script>
 </head>
 <body class="container">
 
@@ -17,26 +18,42 @@
 
   <div class="row mt-5">
 
-    <div class="col">
+    <div class="col-sm-12 col-md-6">
     
-      <!-- Palettes list with colors listed below -->
       <h4 class="text-center">Palettes</h4>
       <ul>
       <?php foreach (getPalettes() as $palette) { ?>
-        <li><?=$palette['palette_name']?></li>
+        <li class="mb-2">
+          <i class="fa fa-trash-o mr-2" aria-hidden="true"></i>
+          <?=$palette['palette_name']?>
+        </li>
       <?php } ?>
       </ul>
 
     </div>
 
-    <div class="col">
+    <div class="col-sm-12 col-md-6">
 
-      <!-- Color list -->
       <h4 class="text-center">Colors</h4>
 
       <ul>
       <?php foreach (getColors() as $color) { ?>
-        <li><?=$color['color_name']?></li>
+        <li class="mb-2">
+
+          <div class="row">
+
+            <div class="col-1">
+              <i class="fa fa-trash-o mr-2" aria-hidden="true"></i>
+            </div>
+
+            <div class="col-6" style="min-height: 25px; max-width: 100px; background-color: #<?=$color['hex_code']?>;">&nbsp;
+            </div>
+
+            <div class="col-4">
+              <?=$color['color_name']?>
+            </div>
+          
+        </li>
       <?php } ?>
       </ul>
 
