@@ -24,8 +24,22 @@
       <ul>
       <?php foreach (getPalettes() as $palette) { ?>
         <li class="mb-2">
-          <i class="fa fa-trash-o mr-2" aria-hidden="true"></i>
-          <?=$palette['palette_name']?>
+
+          <div class="row">
+
+            <div class="col-2 text-right">
+              <form method="get" action="">
+                <input name="removePaletteId" value="<?=$palette['id']?>" type="hidden">
+                <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              </form>
+            </div>         
+
+            <div class="col-10" style="padding-left: 0px;">
+              <?=$palette['palette_name']?>
+            </div>
+        
+          </div>
+
         </li>
       <?php } ?>
       </ul>
@@ -42,11 +56,14 @@
 
           <div class="row">
 
-            <div class="col-1">
-              <i class="fa fa-trash-o mr-2" aria-hidden="true"></i>
+            <div class="col-2 text-right">
+              <form method="get" action="">
+                <input name="removeColorId" value="<?=$color['id']?>" type="hidden">
+                <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              </form>
             </div>
 
-            <div class="col-6" style="min-height: 25px; max-width: 100px; background-color: #<?=$color['hex_code']?>;">&nbsp;
+            <div class="col-6 btn btn-sm" style="min-height: 25px; max-width: 100px; background-color: #<?=$color['hex_code']?>;">&nbsp;
             </div>
 
             <div class="col-4">

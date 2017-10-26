@@ -23,23 +23,25 @@
     addColor($safeName, $safeHex);
   }
 
+  if (isset($_GET['removeColorId'])) {
+    $safeId = htmlentities($_GET['removeColorId']);
+    deleteColor($safeId);
+  }
+
   function getColors() {
-    // Return a list of all colors in the database
     $sql = "SELECT * FROM colors ORDER BY id desc;";
     $request = pg_query(getDb(), $sql);
     return pg_fetch_all($request);
   }
 
   function addColor($name, $hex) {
-    // Insert a new color into the database
     $sql = "INSERT INTO colors (color_name, hex_code) VALUES ('" . $name . "', '" . $hex . "');";
     $request = pg_query(getDb(), $sql);
   }
 
-  function deleteColor() {
-    // Delete a color from the database
-
-
+  function deleteColor($id) {
+    $sql = "DELETE FROM colors WHERE id=" . $id;
+    $request = pg_query(getDb(), $sql);
   }
 
 ?>
