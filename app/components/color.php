@@ -15,6 +15,30 @@
 
 <?php
 
-  // Functions...
+  // Common functions...
+  include_once('database.php');
+
+  // Color-related functions...
+
+  function getColors() {
+    // Return a list of all colors in the database
+    $sql = "SELECT * FROM colors ORDER BY hex_code;";
+    $request = pg_query(getDb(), $sql);
+    return pg_fetch_all($request);
+  }
+
+  function addColor() {
+    // Insert a new color into the database
+
+  }
+
+  function deleteColor() {
+    // Delete a color from the database
+
+
+  }
+
+
+
 
 ?>

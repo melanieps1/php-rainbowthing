@@ -9,7 +9,16 @@
 
 <?php
 
-  // Functions...
+  // Common functions...
+  include_once('database.php');
+
+  // Palette-related functions...
+  function getPalettes() {
+    // Return a list of all palettes in the database
+    $sql = "SELECT * FROM palettes ORDER BY palette_name;";
+    $request = pg_query(getDb(), $sql);
+    return pg_fetch_all($request);
+  }
 
 
 ?>

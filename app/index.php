@@ -21,6 +21,11 @@
     
       <!-- Palettes list with colors listed below -->
       <h4 class="text-center">Palettes</h4>
+      <ul>
+      <?php foreach (getPalettes() as $palette) { ?>
+        <li><?=$palette['palette_name']?></li>
+      <?php } ?>
+      </ul>
 
     </div>
 
@@ -28,6 +33,12 @@
 
       <!-- Color list -->
       <h4 class="text-center">Colors</h4>
+
+      <ul>
+      <?php foreach (getColors() as $color) { ?>
+        <li><?=$color['color_name']?></li>
+      <?php } ?>
+      </ul>
 
     </div>
 
