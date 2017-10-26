@@ -1,16 +1,6 @@
 <?php  
-
-// var_dump(substr($_SERVER['HTTP_HOST'], 0, 9));
-
-//   if (substr($_SERVER['HTTP_HOST'], 0, 9) == 'localhost') {
-//     $url = $_SERVER['HTTP_HOST'] . '/app';
-//   }
-//   else {
-//     $url = '/app';
-//   }
-  
-// var_dump($url);
-
+  // This will not work if you have a secure website
+  // We don't, so it's okay!
   $url = $_SERVER['HTTP_HOST'] . '/app';
   header("Location: http://" . $url);
   die();
