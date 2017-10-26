@@ -1,7 +1,7 @@
 <form class="form-inline" method="get" action="">
 
   <label class="sr-only" for="colorName">Color Name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="colorName" name="nameColor" placeHolder="The deep dark void...">
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="colorName" name="colorName" placeHolder="The deep dark void...">
 
   <label class="sr-only" for="hexCode">Hex Code</label>
   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
@@ -14,22 +14,26 @@
 </form>
 
 <?php
-
-  // Common functions...
+  
   include_once('database.php');
-
-  // Color-related functions...
+  
+  if (isset($_GET['colorName']) && isset($_GET['hexCode'])) {
+    $safeName = htmlentities($_GET['colorName']);
+    $safeHex = htmlentities($_GET['hexCode']);
+    addColor($safeName, $safeHex);
+  }
 
   function getColors() {
     // Return a list of all colors in the database
-    $sql = "SELECT * FROM colors ORDER BY hex_code;";
+    $sql = "SELECT * FROM colors ORDER BY id desc;";
     $request = pg_query(getDb(), $sql);
     return pg_fetch_all($request);
   }
 
-  function addColor() {
+  function addColor($name, $hex) {
     // Insert a new color into the database
-
+    $sql = "INSERT INTO colors (color_name, hex_code) VALUES ('" . $name . "', '" . $hex . "');";
+    $request = pg_query(getDb(), $sql);
   }
 
   function deleteColor() {
@@ -37,8 +41,5 @@
 
 
   }
-
-
-
 
 ?>
