@@ -40,8 +40,12 @@
   }
 
   function deleteColor($id) {
-    $sql = "DELETE FROM colors WHERE id=" . $id;
+    global $error;
+    $sql = "DELETE FROM colors WHERE id = " . $id;
     $request = pg_query(getDb(), $sql);
+    if (!$request) {
+      $error = 'ERROR: Could not delete color.  Color must be deleted from all palettes first.';
+    }
   }
 
   function displayColor($idToDelete, $name, $hex, $inputNameToDelete) {

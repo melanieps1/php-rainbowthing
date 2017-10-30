@@ -46,8 +46,11 @@
   }
 
   function deletePalette($id) {
-    $sql = "DELETE FROM palettes WHERE id=" . $id;
-    $request = pg_query(getDb(), $sql);
+    // Long form cascading deletes (deletes parent AND children)
+    $sql1 = "DELETE FROM color_palette WHERE palette_id = " . $id;
+    $request1 = pg_query(getDb(), $sql1);
+    $sql2 = "DELETE FROM palettes WHERE id=" . $id;
+    $request2 = pg_query(getDb(), $sql2);
   }
 
   function deleteColorFromPalette($id) {
