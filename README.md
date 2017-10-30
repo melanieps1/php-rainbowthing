@@ -4,7 +4,7 @@
 
 1. Clone repo:
 
-  $ git clone https://github.com/bootcamp-f17/php-rainbowthing.git
+  $ git clone https://github.com/melanieps1/php-rainbowthing.git
 
 2. Set up PostgreSQL database using commands from database.sql.
 
