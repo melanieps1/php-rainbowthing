@@ -27,6 +27,12 @@
     deleteColorFromPalette($safeId);
   }
 
+  if (isset($_GET['paletteIdToAddToRelation']) && isset($_GET['colorIdToAddToRelation'])) {
+    $safeColorId = htmlentities($_GET['colorIdToAddToRelation']);
+    $safePaletteId = htmlentities($_GET['paletteIdToAddToRelation']);
+    addColorToPalette($safeColorId, $safePaletteId);
+  }
+
   function getPalettes() {
     // Return a list of all palettes in the database
     $sql = "SELECT * FROM palettes ORDER BY id desc;";
@@ -57,6 +63,15 @@
     ";
     $request = pg_query(getDb(), $sql);
     return pg_fetch_all($request);
+  }
+
+  function addColorToPalette($color_id, $palette_id) {
+    $sql = 'INSERT INTO color_palette (color_id, palette_id) VALUES (' . $color_id . ', ' . $palette_id . ');';
+    $request = pg_query(getDb(), $sql);
+  }
+
+  function colorOptionForPalette($color) {
+    return '<option value="' . $color['id'] . '">' . $color['color_name'] . "</option>\n";
   }
 
 ?>

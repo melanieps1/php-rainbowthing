@@ -41,18 +41,44 @@
           </div>
 
           <div class="ml-5">
-            <?php foreach(getColorsForPalette($palette['id']) as $color) {
-              echo displayColor($color['delete_id'], $color['color_name'], $color['hex_code'], 'removeColorFromPaletteId');
-            } ?>
+            <?php 
+              $usedColors = getColorsForPalette($palette['id']);
+              if ($usedColors) {
+                foreach($usedColors as $color) {
+                  echo displayColor($color['delete_id'], $color['color_name'], $color['hex_code'], 'removeColorFromPaletteId');
+                } 
+              }
+            ?>
           </div>
 
           <form class="ml-5" method="get" action="">
+            <input type="hidden" name="paletteIdToAddToRelation" value="<?=$palette['id']?>">
             <div class="form-inline ml-4">
               <label for="colorSelect" class="sr-only">Color Select</label>
-              <select class="form-control form-control-sm mb-2 mr-sm-2 mb-sm-0" id="colorSelect" name="colorId">
+              <select class="form-control form-control-sm mb-2 mr-sm-2 mb-sm-0" id="colorSelect" name="colorIdToAddToRelation">
 
-                <?php foreach (getColors() as $color) {
-                  print '<option value="' . $color['id'] . '">' . $color['color_name'] . "</option>\n";
+                <?php 
+
+                var_dump($usedColors);
+
+                foreach (getColors() as $color) {
+                
+                  // Test to see if $color is in $usedColors?
+                  if ($usedColors) {
+                    if (in_array($color, $usedColors)) {
+                      // ignore it
+                      var_dump('IGNORE');
+                    }
+                    else {
+                      var_dump('NOT IN');
+                      print colorOptionForPalette($color);
+                    }
+                  }
+                  else {
+                    var_dump('NO USED COLORS');
+                    print colorOptionForPalette($color);
+                  }
+
                 }?>
 
               </select>
