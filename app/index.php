@@ -47,8 +47,10 @@
           <div class="ml-5">
             <?php 
               $usedColors = getColorsForPalette($palette['id']);
+              $usedColorIds = array();
               if ($usedColors) {
                 foreach($usedColors as $color) {
+                  array_push($usedColorIds, $color['id']);
                   echo displayColor($color['delete_id'], $color['color_name'], $color['hex_code'], 'removeColorFromPaletteId');
                 } 
               }
@@ -69,17 +71,17 @@
                 
                   // Test to see if $color is in $usedColors?
                   if ($usedColors) {
-                    if (in_array($color, $usedColors)) {
+                    if (in_array($color['id'], $usedColorIds)) {
                       // ignore it
-                      var_dump('IGNORE');
+                      // var_dump('IGNORE');
                     }
                     else {
-                      var_dump('NOT IN');
+                      // var_dump('NOT IN');
                       print colorOptionForPalette($color);
                     }
                   }
                   else {
-                    var_dump('NO USED COLORS');
+                    // var_dump('NO USED COLORS');
                     print colorOptionForPalette($color);
                   }
 
