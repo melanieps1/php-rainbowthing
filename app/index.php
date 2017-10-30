@@ -8,6 +8,10 @@
 </head>
 <body class="container">
 
+  <!-- Gets rid of URL params upon clicking the button -->
+  <!-- TODO: Hide params instead of needing this button crap -->
+  <a href="/">Reset URL params</a>
+
   <h1 class="text-center mt-5">Rainbowthing</h1>
 
   <h4 class="mt-5">New Color</h4>
