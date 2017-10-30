@@ -22,6 +22,11 @@
     deletePalette($safeId);
   }
 
+  if (isset($_GET['removeColorFromPaletteId'])) {
+    $safeId = htmlentities($_GET['removeColorFromPaletteId']);
+    deleteColorFromPalette($safeId);
+  }
+
   function getPalettes() {
     // Return a list of all palettes in the database
     $sql = "SELECT * FROM palettes ORDER BY id desc;";
@@ -37,6 +42,21 @@
   function deletePalette($id) {
     $sql = "DELETE FROM palettes WHERE id=" . $id;
     $request = pg_query(getDb(), $sql);
+  }
+
+  function deleteColorFromPalette($id) {
+    $sql = "DELETE FROM color_palette WHERE id=" . $id;
+    $request = pg_query(getDb(), $sql);
+  }
+
+  function getColorsForPalette($id) {
+    $sql = "
+      SELECT color_palette.id as delete_id, colors.* FROM color_palette
+      JOIN colors ON color_palette.color_id = colors.id
+      WHERE palette_id = " . $id . ";
+    ";
+    $request = pg_query(getDb(), $sql);
+    return pg_fetch_all($request);
   }
 
 ?>

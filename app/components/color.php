@@ -44,4 +44,24 @@
     $request = pg_query(getDb(), $sql);
   }
 
+  function displayColor($idToDelete, $name, $hex, $inputNameToDelete) {
+    return '
+      <div class="row mb-2">
+
+        <div class="col-2 text-right">
+          <form method="get" action="">
+            <input name="' . $inputNameToDelete . '" value="' . $idToDelete . '" type="hidden">
+            <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+          </form>
+        </div>
+
+        <div class="col-6 btn btn-sm" style="min-height: 25px; max-width: 100px; background-color: #' . $hex . ';">&nbsp;
+        </div>
+
+        <div class="col-4">' . $name . '</div>
+
+      </div>
+    ';
+  }
+
 ?>

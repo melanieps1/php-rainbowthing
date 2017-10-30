@@ -23,7 +23,7 @@
       <h4 class="text-center">Palettes</h4>
       <ul>
       <?php foreach (getPalettes() as $palette) { ?>
-        <li class="mb-2">
+        <li class="mb-2 mt-5">
 
           <div class="row">
 
@@ -40,6 +40,26 @@
         
           </div>
 
+          <div class="ml-5">
+            <?php foreach(getColorsForPalette($palette['id']) as $color) {
+              echo displayColor($color['delete_id'], $color['color_name'], $color['hex_code'], 'removeColorFromPaletteId');
+            } ?>
+          </div>
+
+          <form class="ml-5" method="get" action="">
+            <div class="form-inline ml-4">
+              <label for="colorSelect" class="sr-only">Color Select</label>
+              <select class="form-control form-control-sm mb-2 mr-sm-2 mb-sm-0" id="colorSelect" name="colorId">
+
+                <?php foreach (getColors() as $color) {
+                  print '<option value="' . $color['id'] . '">' . $color['color_name'] . "</option>\n";
+                }?>
+
+              </select>
+              <button type="submit" class="btn btn-secondary btn-sm">Add to Palette</button>
+            </div>
+          </form> 
+
         </li>
       <?php } ?>
       </ul>
@@ -52,25 +72,7 @@
 
       <ul>
       <?php foreach (getColors() as $color) { ?>
-        <li class="mb-2">
-
-          <div class="row">
-
-            <div class="col-2 text-right">
-              <form method="get" action="">
-                <input name="removeColorId" value="<?=$color['id']?>" type="hidden">
-                <button class="btn btn-sm btn-outline-secondary" type="submit"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-              </form>
-            </div>
-
-            <div class="col-6 btn btn-sm" style="min-height: 25px; max-width: 100px; background-color: #<?=$color['hex_code']?>;">&nbsp;
-            </div>
-
-            <div class="col-4">
-              <?=$color['color_name']?>
-            </div>
-          
-        </li>
+        <li><?=displayColor($color['id'], $color['color_name'], $color['hex_code'], 'removeColorId')?></li>
       <?php } ?>
       </ul>
 
