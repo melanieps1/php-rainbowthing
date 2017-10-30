@@ -41,9 +41,12 @@
 
   function deleteColor($id) {
     global $error;
+    global $info;
     $sql = "DELETE FROM colors WHERE id = " . $id;
     $request = pg_query(getDb(), $sql);
-    if (!$request) {
+    if ($request) {
+      $info = 'Color deleted successfully.';
+    } else {
       $error = 'ERROR: Could not delete color.  Color must be deleted from all palettes first.';
     }
   }
